@@ -5,8 +5,8 @@ Route::get('/', function () {
 Auth::routes();
 Route::resource('Leave', 'LeaveController');
 Route::resource('Time', 'TimeRecordingController');
+Route::resource('Add', 'AddController');
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/Add', 'AddController@index');
 
 
 

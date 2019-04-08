@@ -11,9 +11,9 @@
         <div class="portlet-body form">
             <div class="form-body">
                 <div class="form-group">
-                    <form action={{ route('register') }} method="post" class="mt-repeater form-horizontal"
-                          enctype="multipart/form-data">
-                        {{csrf_field()}}
+                        <form method="POST" action="{{ url('/Add') }}" class="mt-repeater form-horizontal">
+                            @csrf
+
                         <div data-repeater-list="group-a">
                             <div data-repeater-item class="mt-repeater-item">
                                 <!-- jQuery Repeater Container -->
@@ -26,38 +26,38 @@
                                 <div class="mt-repeater-input">
                                     <label class="control-label">شماره همراه</label>
                                     <input class="input-group form-control form-control-inline date date-picker"
-                                           size="16" type="text" name="Demand" required/>
+                                           size="16" type="text" name="phone" required/>
                                 </div>
                                 <div class="mt-repeater-input">
                                     <label class="control-label">شماره ثابت</label>
                                     <input class="input-group form-control form-control-inline date date-picker"
-                                           size="16" type="text" name="from" required/>
+                                           size="16" type="text" name="tel" required/>
                                 </div>
                                 <div class="mt-repeater-input">
                                     <label class="control-label">کد ملی</label>
                                     <input class="input-group form-control form-control-inline date date-picker"
-                                           size="16" type="text" name="Uptodate" required/>
+                                           size="16" type="text" name="nationalCode" required/>
                                 </div>
                                 <br/>
                                 <div class="mt-repeater-input">
                                     <label class="control-label">سن</label>
                                     <input class="input-group form-control form-control-inline date date-picker"
-                                           size="16" type="text" name="Uptodate" required/>
+                                           size="16" type="text" name="age" required/>
                                 </div>
                                 <div class="mt-repeater-input">
                                     <label class="control-label">سمت</label>
                                     <input class="input-group form-control form-control-inline date date-picker"
-                                           size="16" type="text" name="Uptodate" required/>
+                                           size="16" type="text" name="side" required/>
                                 </div>
                                 <div class="mt-repeater-input">
                                     <label class="control-label">ایمیل</label>
                                     <input class="input-group form-control form-control-inline date date-picker"
-                                           size="16" type="text" name="Uptodate" required/>
+                                           size="16" type="text" name="email" required/>
                                 </div>
                                 <div class="mt-repeater-input">
                                     <label class="control-label">کلمه عبور</label>
                                     <input class="input-group form-control form-control-inline date date-picker"
-                                           size="16" type="text" name="Uptodate" required/>
+                                           size="16" type="text" name="password" required/>
                                 </div>
 
 

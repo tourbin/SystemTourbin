@@ -32,11 +32,14 @@
                                         <input class="input-group form-control form-control-inline date date-picker"
                                                size="16" type="text" name="Leaveclock"/>
                                     </div>
-                                    <div class="col-xs-6 col-sm-2">
-                                        <label class="control-label">توضیحات</label>
+
+                                    <br/>
+
+
+
                                         <textarea rows="2" cols="80" name="text"
                                                   placeholder="لطفا متن خود را وارد کنید"></textarea>
-                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -48,7 +51,7 @@
                 <table class="table table-hover table-bordered results">
                     <thead>
                     <tr>
-                        <th>نام</th>
+                        <th>روز</th>
                         <th>تاریخ</th>
                         <th>زمان ورود</th>
                         <th>زمان خروج</th>
@@ -62,9 +65,9 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td style="color: red">جمع مرخصی های ساعتی</td>
-                        <td style="color: red">جمع تاخیر</td>
-                        <td style="color: red">جمع مجموع ساعات کاری</td>
+                        <td style="color: red">جمع مرخصی های ساعتی:</td>
+                        <td style="color: red">جمع تاخیر:</td>
+                        <td style="color: red">جمع مجموع ساعات کاری:</td>
                         <td></td>
                     </tr>
                     </tfoot>
@@ -73,7 +76,7 @@
                     @foreach($Time as $tim)
                         <tbody>
                         <tr>
-                            <td>{{$tim->name}}</td>
+                            <td></td>
                             <td>{{Verta::instance($tim->created_at)->format('Y-n-j')}}</td>
                             <td>{{$tim->timein}}</td>
                             <td>{{$tim->timeout}}</td>
@@ -87,7 +90,7 @@
 
                             </td>
                             <td>{{$tim->Delay}} ساعت</td>
-                            <td>{{$tim->Daily}} ساعت</td>
+                            <td></td>
 
 
                             <td>
@@ -96,7 +99,9 @@
                                     <span
                                             class="label label-sm label-success">بدون توضیح</span>
                                 @else
-                                    {{$tim->text}}
+                                    <span
+                                            class="label label-sm label-danger">{{$tim->text}}</span>
+
                                 @endif
 
                             </td>
