@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Leave;
+use App\User;
 use Illuminate\Http\Request;
 
 class LeaveController extends Controller
@@ -64,9 +65,10 @@ class LeaveController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
-        //
+        $leave=Leave::get();
+        return view('/Leave/ShowLeave',compact('leave'));
     }
 
     /**
@@ -91,4 +93,6 @@ class LeaveController extends Controller
     {
         //
     }
+
+
 }

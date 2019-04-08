@@ -191,12 +191,12 @@
                                 <ul class="dropdown-menu dropdown-menu-fw">
                                     <li class="dropdown more-dropdown-sub">
                                     <li>
-                                        <a href="{{url('/TimeRecordingView')}}"><img src="{{asset('/icon/icons8-checked-user-male-50.png')}}"
+                                        <a href="{{url('/Add/{Add}/edit')}}"><img src="{{asset('/icon/icons8-checked-user-male-50.png')}}"
                                                                       title="پرسنل" width="45"
                                                                       height="45"><br/></a>
                                     </li>
                                     <li>
-                                        <a href="/Leave"><img src="{{asset('/icon/Leavee.png')}}"
+                                        <a href="{{url('/Leave/{Leave}/edit')}}"><img src="{{asset('/icon/Leavee.png')}}"
                                                               title="درخواست های مرخصی" width="45"
                                                               height="45"><br/></a>
                                     </li>

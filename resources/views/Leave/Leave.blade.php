@@ -66,6 +66,7 @@
 
                             </thead>
                             @foreach($leave as $leav)
+                                @if($leav->name == auth()->user()->name)
                                 <tbody>
 
                                 <tr class="odd gradeX">
@@ -74,15 +75,16 @@
                                     <td>{{$leav->from}}</td>
                                     <td>{{$leav->Uptodate}}</td>
                                     <td>
-                                        @if($leav->text == "")
+                                        @if($leav->Answer == "")
                                             <span
                                                     class="label label-sm label-success">در حال برسی</span>
                                         @else
-                                            {{$leav->text}}
+                                            <img src="{{$leav->Answer}}" width="30" height="30">
                                         @endif
 
                                     </td>
                                 </tr>
+                                @endif
                                 @endforeach
                                 </tbody>
 

@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Leave extends Model
 {
     protected $fillable = [
-        'name', 'Demand', 'from','Uptodate',
+        'name', 'Demand', 'from','Uptodate','Answer',
     ];
 }

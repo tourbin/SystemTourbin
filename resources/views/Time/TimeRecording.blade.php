@@ -36,9 +36,8 @@
                                     <br/>
 
 
-
-                                        <textarea rows="2" cols="80" name="text"
-                                                  placeholder="لطفا متن خود را وارد کنید"></textarea>
+                                    <textarea rows="2" cols="80" name="text"
+                                              placeholder="لطفا متن خود را وارد کنید"></textarea>
 
                                 </div>
                             </div>
@@ -74,43 +73,44 @@
                     </tr>
                     </thead>
                     @foreach($Time as $tim)
-                        <tbody>
-                        <tr>
-                            <td></td>
-                            <td>{{Verta::instance($tim->created_at)->format('Y-n-j')}}</td>
-                            <td>{{$tim->timein}}</td>
-                            <td>{{$tim->timeout}}</td>
+                        @if($tim->name == auth()->user()->name)
+                            <tbody>
+                            <tr>
+                                <td></td>
+                                <td>{{Verta::instance($tim->created_at)->format('Y-n-j')}}</td>
+                                <td>{{$tim->timein}}</td>
+                                <td>{{$tim->timeout}}</td>
 
-                            <td>
-                                @if($tim->Leaveclock == "")
-                                    0 ساعت
-                                @else
-                                    {{$tim->Leaveclock}}  ساعت
-                                @endif
+                                <td>
+                                    @if($tim->Leaveclock == "")
+                                        0 ساعت
+                                    @else
+                                        {{$tim->Leaveclock}}  ساعت
+                                    @endif
 
-                            </td>
-                            <td>{{$tim->Delay}} ساعت</td>
-                            <td></td>
-
-
-                            <td>
-
-                                @if($tim->text == "")
-                                    <span
-                                            class="label label-sm label-success">بدون توضیح</span>
-                                @else
-                                    <span
-                                            class="label label-sm label-danger">{{$tim->text}}</span>
-
-                                @endif
-
-                            </td>
+                                </td>
+                                <td>{{$tim->Delay}} ساعت</td>
+                                <td></td>
 
 
-                        </tr>
+                                <td>
 
-                        </tbody>
+                                    @if($tim->text == "")
+                                        <span
+                                                class="label label-sm label-success">بدون توضیح</span>
+                                    @else
+                                        <span
+                                                class="label label-sm label-danger">{{$tim->text}}</span>
 
+                                    @endif
+
+                                </td>
+
+
+                            </tr>
+
+                            </tbody>
+                        @endif
                     @endforeach
                 </table>
             </div>

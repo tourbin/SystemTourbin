@@ -1,6 +1,5 @@
 @extends('layouts.admin')
 @section('form')
-    <br xmlns="http://www.w3.org/1999/html"/>
     <div class="portlet box blue">
         <div class="portlet-body form">
             <div class="form-body">
@@ -17,27 +16,41 @@
                                 <th>شماره همراه</th>
                                 <th>شماره ثابت</th>
                                 <th>کد ملی</th>
+                                <th>انلاین</th>
                                 <th>عملیات</th>
 
                             </tr>
 
                             </thead>
-                                <tbody>
-@foreach($show as $sho)
+                            <tbody>
+                            @foreach($user as $use)
                                 <tr class="odd gradeX">
-                                    <td>{{$sho->name}}</td>
-                                    <td>{{$sho->age}}</td>
-                                    <td>{{$sho->phone}}</td>
-                                    <td>{{$sho->tel}}</td>
-                                    <td>{{$sho->nathionalCode}}</td>
+                                    <td>{{$use->name}}</td>
+                                    <td>{{$use->age}}</td>
+                                    <td>{{$use->phone}}</td>
+                                    <td>{{$use->tel}}</td>
+                                    <td>{{$use->nationalCode}}</td>
                                     <td>
-                                        <a href="/Add"><img src="{{asset('/icon/icons8-todo-list-50 (1).png')}}"
-                                                            title="ساعت کاری پرسنل" width="30"
-                                                            height="30"><br/></a>
+                                        @if(Auth::check() && ($use->id))
+                                            <img src="{{asset('/icon/dactive.png')}}" width="20" height="20"
+                                                 title="غیرفعال">
+                                        @else
+
+                                            <img src="{{asset('/icon/active.png')}}" width="20" height="20"
+                                                 title="فعال">
+                                        @endif
+
+
+                                    </td>
+                                    <td>
+                                        <a href="{{asset('/ViewTimeFull')}}/{{$use->id}}"><img
+                                                    src="{{asset('/icon/icons8-todo-list-50 (1).png')}}"
+                                                    title="ساعت کاری پرسنل" width="30"
+                                                    height="30"><br/></a>
                                     </td>
                                 </tr>
-@endforeach
-                                </tbody>
+                            @endforeach
+                            </tbody>
 
                         </table>
 

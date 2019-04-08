@@ -19,6 +19,7 @@ class CreateLeavesTable extends Migration
             $table->string('Demand');
             $table->string('from');
             $table->string('Uptodate');
+            $table->string('Answer')->nullable();
             $table->timestamps();
         });
     }
