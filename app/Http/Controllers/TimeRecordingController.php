@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\TimeRecording;
 use App\User;
 use Illuminate\Http\Request;
+use Hekmatinasser\Verta\Facades\Verta;
 
 class TimeRecordingController extends Controller
 {

@@ -74,7 +74,7 @@
                         <tbody>
                         <tr>
                             <td>{{$tim->name}}</td>
-                            <td>{{$tim->created_at}}</td>
+                            <td>{{Verta::instance($tim->created_at)->format('Y-n-j')}}</td>
                             <td>{{$tim->timein}}</td>
                             <td>{{$tim->timeout}}</td>
 
