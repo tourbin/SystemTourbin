@@ -1,5 +1,16 @@
 @extends('layouts.admin')
 @section('form')
+
+    @if(session()->has('alert'))
+        <script>
+            swal({
+                html: "مشخصات پرسنل جدید با موفقیت ثبت شد",
+                confirmButtonText: "تاييد",
+                type: 'success',
+            });
+        </script>
+    @endif
+
     <br xmlns="http://www.w3.org/1999/html"/>
     <div class="portlet box blue">
         <div class="portlet-title">
@@ -11,8 +22,8 @@
         <div class="portlet-body form">
             <div class="form-body">
                 <div class="form-group">
-                        <form method="POST" action="{{ url('/Add') }}" class="mt-repeater form-horizontal">
-                            @csrf
+                    <form method="POST" action="{{ url('/Add') }}" class="mt-repeater form-horizontal">
+                        @csrf
 
                         <div data-repeater-list="group-a">
                             <div data-repeater-item class="mt-repeater-item">
@@ -78,6 +89,7 @@
                             <thead>
                             <tr>
                                 <th>نام و نام خانوادگی</th>
+                                <th>سمت</th>
                                 <th>شماره همراه</th>
                                 <th>سن</th>
                                 <th>ایمیل</th>
@@ -87,26 +99,48 @@
                             </tr>
 
                             </thead>
-
+                            @foreach($user as $use)
                                 <tbody>
 
                                 <tr class="odd gradeX">
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>{{$use->name}}</td>
+                                    <td>{{$use->side}}</td>
+                                    <td>{{$use->phone}}</td>
+                                    <td>{{$use->age}}</td>
+                                    <td>{{$use->email}}</td>
+                                    <td>{{$use->nationalCode}}</td>
                                     <td>
-                                        {{--@if($leav->text == "")--}}
-                                            {{--<span--}}
-                                                    {{--class="label label-sm label-success">در حال برسی</span>--}}
-                                        {{--@else--}}
-                                            {{--{{$leav->text}}--}}
-                                        {{--@endif--}}
-
+                                        <a href="{{url('/EditUser')}}/{{$use->id}}"><img
+                                                    src="{{asset('/icon/icons8-available-updates-50.png')}}"
+                                                    width="20"
+                                                    height="20"
+                                                    title="ویرایش">
+                                            @if(session()->has('alertupdate'))
+                                                <script>
+                                                    swal({
+                                                        html: "مشخصات پرسنل با موفقیت بروزرسانی شد",
+                                                        confirmButtonText: "تاييد",
+                                                        type: 'info',
+                                                    });
+                                                </script>
+                                            @endif
+                                        </a>
+                                        <a href="{{url('/DeleteUser')}}/{{$use->id}}"><img
+                                                    src="{{asset('/icon/icons8-delete-user-male-50.png')}}"
+                                                    width="20" height="20" title="حذف">
+                                            @if(session()->has('alertdelete'))
+                                                <script>
+                                                    swal({
+                                                        html: "مشخصات پرسنل با موفقیت از سیستم حذف شد",
+                                                        confirmButtonText: "تاييد",
+                                                        type: 'error',
+                                                    });
+                                                </script>
+                                            @endif
+                                        </a>
                                     </td>
-                                    <td></td>
                                 </tr>
-
+                                @endforeach
                                 </tbody>
 
                         </table>

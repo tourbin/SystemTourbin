@@ -1,5 +1,14 @@
 @extends('layouts.admin')
 @section('form')
+    @if(session()->has('alertleave'))
+        <script>
+            swal({
+                html: "درخواست شما برای مدیریت ارسال شد",
+                confirmButtonText: "تاييد",
+                type: 'success',
+            });
+        </script>
+    @endif
     <br xmlns="http://www.w3.org/1999/html"/>
     <div class="portlet box blue">
         <div class="portlet-title">
@@ -67,26 +76,36 @@
                             </thead>
                             @foreach($leave as $leav)
                                 @if($leav->name == auth()->user()->name)
-                                <tbody>
+                                    <tbody>
 
-                                <tr class="odd gradeX">
-                                    <td>{{$leav->name}}</td>
-                                    <td>{{$leav->Demand}} روز</td>
-                                    <td>{{$leav->from}}</td>
-                                    <td>{{$leav->Uptodate}}</td>
-                                    <td>
-                                        @if($leav->Answer == "")
-                                            <span
-                                                    class="label label-sm label-success">در حال برسی</span>
-                                        @else
-                                            <img src="{{$leav->Answer}}" width="30" height="30">
-                                        @endif
+                                    <tr class="odd gradeX">
+                                        <td>{{$leav->name}}</td>
+                                        <td>{{$leav->Demand}} روز</td>
+                                        <td>{{$leav->from}}</td>
+                                        <td>{{$leav->Uptodate}}</td>
+                                        <td>
+                                            @if($leav->Answer == "")
+                                                <span
+                                                        class="label label-sm label-info">در حال برسی</span>
 
-                                    </td>
-                                </tr>
-                                @endif
-                                @endforeach
-                                </tbody>
+
+
+                                            @elseif($leav->Answer == "icon/delete (2).png")
+                                                <span
+                                                        class="label label-sm label-danger">با درخواست شما موافقت نشده است</span>
+
+
+                                            @else
+                                                <span
+                                                        class="label label-sm label-success">با درخواست شما موافقت شد</span>
+
+                                            @endif
+
+                                        </td>
+                                    </tr>
+                                    @endif
+                                    @endforeach
+                                    </tbody>
 
                         </table>
 

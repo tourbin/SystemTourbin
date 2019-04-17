@@ -1,42 +1,44 @@
 @extends('layouts.admin')
 @section('form')
+    @if(session()->has('TeleWork'))
+        <script>
+            swal({
+                html: "اطلاعات دورکاری شما با موفقیت در سیستم ثبت شد",
+                confirmButtonText: "تاييد",
+                type: 'success',
+            });
+        </script>
+    @endif
     <div class="portlet box blue ">
         <div class="portlet-title">
             <div class="caption">
-                ثبت ساعت ورود و خروج
+                فرم ثبت ساعات دور کاری پرسنل
             </div>
         </div>
         <div class="portlet-body form ">
             <div class="form-body ">
                 <div class="form-group">
-                    <form action="{{url('/Time')}}" method="post" class="mt-repeater form-horizontal">
+                    <form action="{{url('/Telework')}}" method="post" class="mt-repeater form-horizontal">
                         {{csrf_field()}}
                         <div data-repeater-list="group-a">
                             <div data-repeater-item class="mt-repeater-item">
                                 <div class="row">
                                     <div class="col-xs-6 col-sm-2">
-                                        <label class="control-label">ساعت ورود</label>
+                                        <label class="control-label">ساعت شروع</label>
                                         <br/>
                                         <input class="input-group form-control form-control-inline date date-picker"
-                                               size="16" type="text" name="timein" required/>
+                                               size="16" type="text" name="Start" required/>
                                     </div>
                                     <div class="col-xs-6 col-sm-2">
-                                        <label class="control-label">ساعت خروج</label>
+                                        <label class="control-label">ساعت پایان</label>
                                         <br/>
                                         <input class="input-group form-control form-control-inline date date-picker"
-                                               size="16" type="text" name="timeout" required/>
+                                               size="16" type="text" name="End" required/>
                                     </div>
-                                    <div class="col-xs-6 col-sm-2">
-                                        <label class="control-label">مرخصی ساعتی</label>
-                                        <br/>
-                                        <input class="input-group form-control form-control-inline date date-picker"
-                                               size="16" type="text" name="Leaveclock"/>
-                                    </div>
-
                                     <br/>
 
 
-                                    <textarea rows="2" cols="80" name="text"
+                                    <textarea rows="2" cols="80" name="Description"
                                               placeholder="لطفا متن خود را وارد کنید"></textarea>
 
                                 </div>
@@ -52,11 +54,9 @@
                     <tr>
                         <th>روز</th>
                         <th>تاریخ</th>
-                        <th>زمان ورود</th>
-                        <th>زمان خروج</th>
-                        <th>مرخصی ساعتی</th>
-                        <th>تاخیر</th>
-                        <th>مجموع ساعت کاری</th>
+                        <th>ساعت شروع</th>
+                        <th>ساعت پایان</th>
+                        <th>مدت زمان</th>
                         <th>توضیحات</th>
                     <tfoot>
                     <tr>
@@ -64,43 +64,37 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td style="color: red">جمع مرخصی های ساعتی:</td>
-                        <td style="color: red">جمع تاخیر:</td>
-                        <td style="color: red">جمع مجموع ساعات کاری:</td>
+                        <td style="color: red">جمع مجموع ساعات دورکاری:</td>
                         <td></td>
                     </tr>
                     </tfoot>
                     </tr>
                     </thead>
-                    @foreach($Time as $tim)
-                        @if($tim->name == auth()->user()->name)
+                    @foreach($Telework as $tele)
+                        @if($tele->id == auth()->user()->id)
                             <tbody>
                             <tr>
-                                <td></td>
-                                <td>{{Verta::instance($tim->created_at)->format('Y-n-j')}}</td>
-                                <td>{{$tim->timein}}</td>
-                                <td>{{$tim->timeout}}</td>
+                                <td>
+                                </td>
+                                <td>{{Verta::instance($tele->created_at)->format('Y-n-j')}}</td>
+                                <td>{{$tele->Start}}</td>
+                                <td>{{$tele->End}}</td>
 
                                 <td>
-                                    @if($tim->Leaveclock == "")
+                                    @if($tele->Leaveclock == "")
                                         0 ساعت
                                     @else
-                                        {{$tim->Leaveclock}}  ساعت
+                                        {{$tele->Leaveclock}}  ساعت
                                     @endif
 
                                 </td>
-                                <td>{{$tim->Delay}} ساعت</td>
-                                <td></td>
-
-
                                 <td>
-
-                                    @if($tim->text == "")
+                                    @if($tele->Description == "")
                                         <span
                                                 class="label label-sm label-success">بدون توضیح</span>
                                     @else
                                         <span
-                                                class="label label-sm label-danger">{{$tim->text}}</span>
+                                                class="label label-sm label-danger">{{$tele->Description}}</span>
 
                                     @endif
 

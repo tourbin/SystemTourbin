@@ -176,6 +176,15 @@
                                                                   title="ثبت ساعت" width="45"
                                                                   height="45"><br/></a>
                                         </li>
+
+                                        <li>
+                                            <a href="{{url('/ShowTelework')}}"><img src="{{asset('/icon/icons8-businessman-50.png')}}"
+                                                                            title="دور کاری" width="45"
+                                                                            height="45"><br/></a>
+                                        </li>
+
+
+
                                         <li>
                                             <a href="{{url('/Leave')}}"><img src="{{asset('/icon/Leave.png')}}"
                                                                           title="درخواست مرخصی" width="45"

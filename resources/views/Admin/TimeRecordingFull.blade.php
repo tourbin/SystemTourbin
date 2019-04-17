@@ -34,7 +34,7 @@
                     </tr>
                     </thead>
                     @foreach($leave as $leav)
-
+                        @if($user->id == $leav->id)
                             <tbody>
                             <tr>
                                 <td></td>
@@ -71,6 +71,7 @@
                             </tr>
 
                             </tbody>
+                        @endif
                     @endforeach
                 </table>
             </div>

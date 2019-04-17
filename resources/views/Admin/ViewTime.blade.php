@@ -31,13 +31,13 @@
                                     <td>{{$use->tel}}</td>
                                     <td>{{$use->nationalCode}}</td>
                                     <td>
-                                        @if(Auth::check() && ($use->id))
-                                            <img src="{{asset('/icon/dactive.png')}}" width="20" height="20"
-                                                 title="غیرفعال">
-                                        @else
-
+                                        @if(Auth::check())
                                             <img src="{{asset('/icon/active.png')}}" width="20" height="20"
                                                  title="فعال">
+                                        @else
+                                            <img src="{{asset('/icon/dactive.png')}}" width="20" height="20"
+                                                 title="غیرفعال">
+
                                         @endif
 
 

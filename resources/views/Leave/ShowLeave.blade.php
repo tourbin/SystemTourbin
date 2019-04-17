@@ -1,10 +1,28 @@
 @extends('layouts.admin')
 @section('form')
+    @if(session()->has('error'))
+        <script>
+            swal({
+                html: "شما با درخواست مرخصی پرسنل موافقت نکردید",
+                confirmButtonText: "تاييد",
+                type: 'error',
+            });
+        </script>
+    @endif
+    @if(session()->has('success'))
+        <script>
+            swal({
+                html: "شما با درخواست مرخصی پرسنل موافقت کردید",
+                confirmButtonText: "تاييد",
+                type: 'success',
+            });
+        </script>
+    @endif
     <br xmlns="http://www.w3.org/1999/html"/>
     <div class="portlet box blue">
         <div class="portlet-title">
             <div class="caption">
-               نمایش درخواست های مرخصی پرسنل
+                نمایش درخواست های مرخصی پرسنل
             </div>
 
         </div>
@@ -28,30 +46,33 @@
 
                             </thead>
                             @foreach($leave as $leav)
-                                <tbody>
+                                @if($leav->Answer == "")
+                                    <tbody>
 
-                                <tr class="odd gradeX">
-                                    <td>{{$leav->name}}</td>
-                                    <td>{{$leav->Demand}} روز</td>
-                                    <td>{{$leav->from}}</td>
-                                    <td>{{$leav->Uptodate}}</td>
-                                    <td>
-                                        <a href="{{url('/AdminSuccess')}}/{{$leav->id}}"><img src="{{asset('/icon/icons8-checked-checkbox-50.png')}}"
-                                                            title="تایید شده" width="30"
-                                                            height="30"></a>
-                                        <a href=" {{url('/AdminNoSuccess')}}/{{$leav->id}}"><img src="{{asset('/icon/icons8-indeterminate-checkbox-50.png')}}"
-                                                            title="تایید نشده" width="30"
-                                                            height="30"></a>
+                                    <tr class="odd gradeX">
+                                        <td>{{$leav->name}}</td>
+                                        <td>{{$leav->Demand}} روز</td>
+                                        <td>{{$leav->from}}</td>
+                                        <td>{{$leav->Uptodate}}</td>
+                                        <td>
+                                            <a href="{{url('/AdminSuccess')}}/{{$leav->id}}"><img
+                                                        src="{{asset('/icon/icons8-checked-checkbox-50.png')}}"
+                                                        title="تایید شده" width="30"
+                                                        height="30">
 
+                                            </a>
+                                            <a href=" {{url('/AdminNoSuccess')}}/{{$leav->id}}"><img
+                                                        src="{{asset('/icon/icons8-indeterminate-checkbox-50.png')}}"
+                                                        title="تایید نشده" width="30"
+                                                        height="30">
 
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    @endif
+                                    @endforeach
 
-
-
-
-                                    </td>
-                                </tr>
-                                @endforeach
-                                </tbody>
+                                    </tbody>
 
                         </table>
 

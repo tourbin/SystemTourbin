@@ -43,8 +43,15 @@ class TimeRecordingController extends Controller
 
 //        $t3=($request['timeout']-12)+($request['timein']);
         $Delay = $request['timein'] - 9;
-        $Daily1 = $request['timein'];
-        $Daily2 = $Delay - $Daily1;
+//        $Daily1 = $request['timein'];
+//        $Daily2 = $Delay - $Daily1;
+
+        $to = \Carbon\Carbon::createFromFormat('H',$request['timein'] );
+        $from = \Carbon\Carbon::createFromFormat('H',$request['timeout'] );
+
+//        $diff_in_minutes = $to->diffInMinutes($from);
+        $diff_in_minutes1 = $to->diffInHours($from);
+
         TimeRecording::create([
             'name'=>auth()->user()->name,
             'timein' => $request['timein'],
@@ -52,7 +59,7 @@ class TimeRecordingController extends Controller
             'Leaveclock' => $request['Leaveclock'],
             'text' => $request['text'],
             'Delay' => $Delay,
-            'Daily' => $Daily2,
+            'Daily' => $diff_in_minutes1,
         ]);
         session()->flash('alert', 'ثبت ساعت ورود و خروج امروز شما با موفقیت ثبت شد');
         return redirect()->back();

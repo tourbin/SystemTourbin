@@ -44,6 +44,7 @@ class LeaveController extends Controller
             'Uptodate'=>$request['Uptodate']
 
         ]);
+        session()->flash('alertleave','درخواست شما برای مدیریت ارسال شد');
         return redirect()->back();
 
     }
